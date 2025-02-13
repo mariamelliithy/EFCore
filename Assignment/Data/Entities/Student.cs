@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EFCore.Data.Entities
+namespace Assignment.Data.Entities
 {
-    internal class Project
+    internal class Student
     {
-        public int Id { get; set; } 
+
     }
 }

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace EFCore.Migrations
+namespace EFCore.Data.Migrations
 {
     [DbContext(typeof(MyCompanyDbContext))]
     partial class MyCompanyDbContextModelSnapshot : ModelSnapshot
@@ -22,26 +22,13 @@ namespace EFCore.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("EFCore.Data.Entities.Department", b =>
-                {
-                    b.Property<int>("DepartmentId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DepartmentId"));
-
-                    b.HasKey("DepartmentId");
-
-                    b.ToTable("Departments");
-                });
-
             modelBuilder.Entity("EFCore.Data.Entities.Employee", b =>
                 {
                     b.Property<int>("EmpId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EmpId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EmpId"), 10L);
 
                     b.Property<string>("Address")
                         .IsRequired()
@@ -55,9 +42,10 @@ namespace EFCore.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("EmpName")
-                        .IsRequired()
+                        .ValueGeneratedOnAdd()
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(50)")
+                        .HasDefaultValue("TestEmployee");
 
                     b.Property<string>("Password")
                         .IsRequired()
@@ -73,19 +61,6 @@ namespace EFCore.Migrations
                     b.HasKey("EmpId");
 
                     b.ToTable("Employees");
-                });
-
-            modelBuilder.Entity("EFCore.Data.Entities.Project", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Projects");
                 });
 #pragma warning restore 612, 618
         }
