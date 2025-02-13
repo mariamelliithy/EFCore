@@ -33,7 +33,7 @@ namespace EFCore.Data.Entities
         [Range(20,60)]
         public int? Age { get; set; }
 
-        [Phone]
+        [Phone] 
         public string PhoneNumber { get; set; }
 
         //[DataType(DataType.EmailAddress)]
